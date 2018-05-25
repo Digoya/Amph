@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/css/uikit.min.css"/>
+    <link rel="stylesheet" href="../static/css/specific.css">
     <script src="../static/js/uikit.min.js"></script>
     <script src="../static/js/uikit-icons.min.js"></script>
 </head>
@@ -12,10 +13,12 @@
 <header>
     <nav class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-center">
-            <ul class="uk-navbar-nav">
-                <li><a href="#">Trends</a></li>
+            <ul class="uk-navbar-nav nav-news-font .uk-text-large .uk-text-bold">
+                <li><a class="nav-news-font" href="#">Trends</a></li>
                 <li><a href="#">Magazines</a></li>
-                <img src="../static/images/Logo.png">
+                <div class="uk-navbar-item">
+                    <img data-src="../static/images/Logo.png" width="50" height="50" alt="" uk-img >
+                </div>
                 <li class="uk-active"><a href="#">Categories</a></li>
                 <li><a href="#">Item</a></li>
             </ul>

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: NavNews;
+    src: url(../fonts/NewsFontBold.ttf);
+}
+.nav-news-font li a{
+    font-family: NavNews;
+    font-size: larger;
+}
