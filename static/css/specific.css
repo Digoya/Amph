@@ -6,3 +6,9 @@
     font-family: NavNews;
     font-size: larger;
 }
+.sign-border{
+    border-radius: 15px;
+    border-color: #0e6dcd;
+    background-color: white;
+    color: #0e6dcd;
+}
