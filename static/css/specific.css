@@ -6,7 +6,7 @@
     font-family: NavNews;
     font-size: larger;
 }
-.sign-border{
+.sign-in-border{
     border-radius: 15px;
     border-color: #0e6dcd;
     background-color: #f8f8f8;
@@ -15,4 +15,31 @@
 .nav-text-form{
     color: #f8f8f8;
     font-size:calc(16px + 2vw);
+}
+.submit-login{
+    border-radius: 15px;
+    border-color: #32d296;
+    color: #32d296;
+}
+.submit-login:hover{
+    border-radius: 15px;
+    border-color: #0e6dcd;
+    color: #0e6dcd;
+}
+.color-facebook{
+    background-color: #3b5998;
+}
+.color-twitter{
+    background-color: #1da1f2;
+}
+.color-vk{
+    background-color: #45668e;
+}
+.color-google{
+    background-color: transparent;
+
+    color: black;
+}
+.soc-net-white{
+    color: #f8f8f8;
 }

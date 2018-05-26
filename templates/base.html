@@ -27,16 +27,53 @@
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-margin-small-right">
                 <div class="uk-navbar-item">
-                    <button class="uk-button uk-button-primary sign-border">SIGN UP</button>
+                    <button class="uk-button uk-button-primary sign-in-border" uk-toggle="target: #login-modal"
+                            type="button">SIGN UP
+                    </button>
                 </div>
             </ul>
         </div>
     </nav>
+    <!-- Login Modal -->
+    <div id="login-modal" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <img data-src="../static/images/Logo.png" class="uk-modal-title uk-align-center uk-margin-remove-bottom" width="40" height="40" alt="" uk-img>
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <hr class="uk-margin-small-top">
+            <div class="uk-margin-remove soc-net-white">
+                <button class="uk-button uk-width-1-1 uk-margin-small-bottom color-twitter ">
+                    <img data-src="../static/images/twitter-logo.png" width="30" height="30" uk-img>
+                    Sign In Via Twitter</button>
+                <button class="uk-button uk-width-1-1 uk-margin-small-bottom color-facebook">
+                    <img data-src="../static/images/fb-logo.png" width="30" height="30" uk-img>
+                    Sign In Via Facebook</button>
+                <button class="uk-button uk-width-1-1 uk-margin-small-bottom color-vk">
+                    <img data-src="../static/images/vk-logo.png" width="30" height="30" uk-img>
+                    Sign In Via Vk</button>
+                <button class="uk-button uk-button-default uk-width-1-1 color-google">
+                    <img data-src="../static/images/ggle-logo.png" width="30" height="30" uk-img>
+                    Sign In Via Google</button>
+            </div>
+
+            <h3 class="uk-text-center uk-margin-small-top">Or Sign In Via Email</h3>
+            <hr>
+            <form>
+                <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Email address</label>
+                <input class="uk-input uk-margin-small-bottom" type="text">
+                <button class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="button">Sign in via Email</button>
+            </form>
+            <hr>
+            <div>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">To use Amphitheater you must have cookies enabled</p>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">We will never post to Twitter, Facebook, or VK without your permission</p>
+            </div>
+        </div>
+    </div>
     <!-- Thing after NavBar, image, interface e.g.-->
     <div>
         <div class="uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle"
              style="background-image: url(../static/images/NavBarBackground.jpg);">
-            <p class="uk-h4 nav-text-form">Choose your own category</p>
+            <h1 class="uk-h4 nav-text-form">Choose your own category</h1>
         </div>
     </div>
 </header>
