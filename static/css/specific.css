@@ -9,6 +9,10 @@
 .sign-border{
     border-radius: 15px;
     border-color: #0e6dcd;
-    background-color: white;
+    background-color: #f8f8f8;
     color: #0e6dcd;
+}
+.nav-text-form{
+    color: #f8f8f8;
+    font-size:calc(16px + 2vw);
 }

@@ -11,10 +11,11 @@
 </head>
 <body>
 <header>
+    <!-- Navigation Bar -->
     <nav class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-center">
             <ul class="uk-navbar-nav nav-news-font .uk-text-large .uk-text-bold">
-                <li><a class="nav-news-font" href="#">Trends</a></li>
+                <li><a href="#">Trends</a></li>
                 <li><a href="#">Magazines</a></li>
                 <div class="uk-navbar-item">
                     <img data-src="../static/images/Logo.png" width="50" height="50" alt="" uk-img>
@@ -25,10 +26,55 @@
         </div>
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-margin-small-right">
-                <div class="uk-navbar-item"><button class="uk-button uk-button-primary sign-border">SIGN UP</button></div>
+                <div class="uk-navbar-item">
+                    <button class="uk-button uk-button-primary sign-border">SIGN UP</button>
+                </div>
             </ul>
         </div>
     </nav>
+    <!-- Thing after NavBar, image, interface e.g.-->
+    <div>
+        <div class="uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle"
+             style="background-image: url(../static/images/NavBarBackground.jpg);">
+            <p class="uk-h4 nav-text-form">Choose your own category</p>
+        </div>
+    </div>
 </header>
+<!-- Category made of Cards-->
+<div class="uk-padding">
+    <div class="uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-margin-small uk-margin-medium uk-text-center"
+         uk-grid>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Text</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Text</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Text</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Text</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Text</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Text</div>
+        </div>
+    </div>
+</div>
+<footer>
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav .uk-text-bold">
+                <li><a class="nav-news-font" href="#">Something</a></li>
+                <li><a href="#">Magazines</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Authors</a></li>
+            </ul>
+        </div>
+    </nav>
+</footer>
 </body>
 </html>
