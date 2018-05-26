@@ -43,3 +43,15 @@
 .soc-net-white{
     color: #f8f8f8;
 }
+.substyle{
+    background-color: #32d296;
+    border-radius: 20px;
+    border-color: #32d296;
+    color: white;
+}
+.substyle:hover{
+    border-radius: 20px;
+    border-color: #2daa76;
+    color: white;
+    background-color: #2daa76;
+}
