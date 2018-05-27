@@ -7,5 +7,5 @@ from django.conf.urls.static import static
 from journal import views
 
 urlpatterns = [
-    path('', views.main_page)
+    path('', views.categories)
 ]

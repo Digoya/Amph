@@ -18,6 +18,10 @@ class User(models.Model):
 
     email = models.EmailField(help_text="Enter your Email", null=True, blank=True)
 
+    first_name = models.CharField(max_length=40, blank=True)
+
+    last_name = models.CharField(max_length=40, blank=True)
+
     short_describe = models.CharField(max_length=240, help_text="Enter short Description", null=True, blank=True)
 
 
