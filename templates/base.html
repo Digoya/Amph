@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
-    <link rel="shortcut icon" href="{% static 'journal/images/Logo.png'%}" type="image/png">
-    <link rel="stylesheet" href="{% static 'journal/css/uikit.min.css'%}"/>
+    <link rel="shortcut icon" href="{% static 'journal/images/Logo.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'journal/css/uikit.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'journal/css/specific.css' %}">
     <script src="{% static 'journal/js/uikit.min.js' %}"></script>
     <script src="{% static 'journal/js/uikit-icons.min.js' %}"></script>
@@ -17,13 +17,9 @@
     <nav class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-center">
             <ul class="uk-navbar-nav nav-news-font .uk-text-large .uk-text-bold">
-                <li><a href="#">Trends</a></li>
-                <li><a href="#">Magazines</a></li>
-                <div class="uk-navbar-item">
-                    <img data-src="{% static 'journal/images/Logo.png'%}" width="50" height="50" alt="" uk-img>
-                </div>
-                <li class="uk-active"><a href="#">Categories</a></li>
-                <li><a href="#">Authors</a></li>
+                {% block actnav %}
+                    Something Wrong
+                {% endblock %}
             </ul>
         </div>
         <div class="uk-navbar-right">
@@ -44,22 +40,27 @@
     <!-- Modal for register -->
     <div id="sign-up-modal" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            <img data-src="../static/images/Logo.png" class="uk-modal-title uk-align-center uk-margin-remove-bottom" width="40" height="40" alt="" uk-img>
+            <img data-src="{% static 'journal/images/Logo.png' %}"
+                 class="uk-modal-title uk-align-center uk-margin-remove-bottom" width="40" height="40" alt="" uk-img>
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <hr class="uk-margin-small-top">
             <div class="uk-margin-remove soc-net-white">
                 <button class="uk-button uk-width-1-1 uk-margin-small-bottom color-twitter ">
-                    <img data-src="{% static 'journal/images/twitter-logo.png'%}" width="30" height="30" uk-img>
-                    Sign In Via Twitter</button>
+                    <img data-src="{% static 'journal/images/twitter-logo.png' %}" width="30" height="30" uk-img>
+                    Sign In Via Twitter
+                </button>
                 <button class="uk-button uk-width-1-1 uk-margin-small-bottom color-facebook">
-                    <img data-src="{% static 'journal/images/fb-logo.png'%}" width="30" height="30" uk-img>
-                    Sign In Via Facebook</button>
+                    <img data-src="{% static 'journal/images/fb-logo.png' %}" width="30" height="30" uk-img>
+                    Sign In Via Facebook
+                </button>
                 <button class="uk-button uk-width-1-1 uk-margin-small-bottom color-vk">
-                    <img data-src="{% static 'journal/images/vk-logo.png'%}" width="30" height="30" uk-img>
-                    Sign In Via Vk</button>
+                    <img data-src="{% static 'journal/images/vk-logo.png' %}" width="30" height="30" uk-img>
+                    Sign In Via Vk
+                </button>
                 <button class="uk-button uk-button-default uk-width-1-1 color-google">
-                    <img data-src="{% static 'journal/images/ggle-logo.png'%}" width="30" height="30" uk-img>
-                    Sign In Via Google</button>
+                    <img data-src="{% static 'journal/images/ggle-logo.png' %}" width="30" height="30" uk-img>
+                    Sign In Via Google
+                </button>
             </div>
 
             <h3 class="uk-text-center uk-margin-small-top">Or Sign In Via Email</h3>
@@ -67,19 +68,23 @@
             <form id="sign-in">
                 <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Email address</label>
                 <input class="uk-input uk-margin-small-bottom" type="text" name="login">
-                <input class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit" value="Sign in via Email" form="sign-in">
+                <input class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit"
+                       value="Sign in via Email" form="sign-in">
             </form>
             <hr>
             <div>
-                <p class="uk-text-muted uk-margin-remove uk-text-small">To use Amphitheater you must have cookies enabled</p>
-                <p class="uk-text-muted uk-margin-remove uk-text-small">We will never post to Twitter, Facebook, or VK without your permission</p>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">To use Amphitheater you must have cookies
+                    enabled</p>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">We will never post to Twitter, Facebook, or VK
+                    without your permission</p>
             </div>
         </div>
     </div>
     <!-- Modal for login -->
     <div id="login-modal" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            <img data-src="../static/images/Logo.png" class="uk-modal-title uk-align-center uk-margin-remove-bottom" width="40" height="40" alt="" uk-img>
+            <img data-src="{% static 'journal/images/Logo.png' %}"
+                 class="uk-modal-title uk-align-center uk-margin-remove-bottom" width="40" height="40" alt="" uk-img>
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <hr class="uk-margin-small-top">
 
@@ -90,12 +95,15 @@
                 <input class="uk-input uk-margin-small-bottom" type="text" name="login">
                 <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Password</label>
                 <input class="uk-input uk-margin-small-bottom" type="password" name="pass">
-                <input class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit" value="LOG IN" form="auth">
+                <input class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit"
+                       value="LOG IN" form="auth">
             </form>
             <hr>
             <div>
-                <p class="uk-text-muted uk-margin-remove uk-text-small">To use Amphitheater you must have cookies enabled</p>
-                <p class="uk-text-muted uk-margin-remove uk-text-small">We will never post to Twitter, Facebook, or VK without your permission</p>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">To use Amphitheater you must have cookies
+                    enabled</p>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">We will never post to Twitter, Facebook, or VK
+                    without your permission</p>
             </div>
         </div>
     </div>

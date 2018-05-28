@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
+{% block actnav %}
+    <li><a href="trends">Trends</a></li>
+    <li><a href="magazines">Magazines</a></li>
+    <div class="uk-navbar-item">
+        <img data-src="{% static 'journal/images/Logo.png' %}" width="50" height="50" alt="" uk-img>
+    </div>
+    <li class="uk-active"><a href="{% url 'categories' %}">Categories</a></li>
+    <li><a href="{% url 'authors' %}">Authors</a></li>
+{% endblock %}
 {% block underheader %}
     <div class="uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle"
          style="background-image: url({% static 'journal/images/NavBarBackground.jpg' %});">
@@ -7,26 +16,26 @@
     </div>
 {% endblock %}
 <!-- Category made of Cards-->
-    {% block content %}
-        <div class="uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-margin-small uk-margin-medium uk-text-center"
-             uk-grid>
-            <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">Travel</div>
-            </div>
-            <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">Science</div>
-            </div>
-            <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">Culture</div>
-            </div>
-            <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">IT</div>
-            </div>
-            <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">Space</div>
-            </div>
-            <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">Internet</div>
-            </div>
+{% block content %}
+    <div class="uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-margin-small uk-margin-medium uk-text-center"
+         uk-grid>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Travel</div>
         </div>
-    {% endblock %}
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Science</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Culture</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">IT</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Space</div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body uk-card-hover">Internet</div>
+        </div>
+    </div>
+{% endblock %}

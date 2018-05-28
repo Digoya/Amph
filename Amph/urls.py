@@ -23,5 +23,6 @@ from django.conf.urls.static import static
 from journal import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('categories/', include('journal.urls')),
+    path('journal/', include('journal.urls')),
+    path('', include('journal.urls'))
 ]
