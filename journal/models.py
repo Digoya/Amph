@@ -1,28 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
 """
     Creating Object user for DB
 """
 
 
-class User(models.Model):
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    username = models.CharField(max_length=40, unique=True, help_text="Enter your login", null=False)
-
-    """
-        Representing an object as his login
-    """
     def __str__(self):
-        return self.username
-
-    password = models.CharField(max_length=40, help_text="Enter your password", null=False)
-
-    email = models.EmailField(help_text="Enter your Email", null=True, blank=True)
-
-    first_name = models.CharField(max_length=40, blank=True)
-
-    last_name = models.CharField(max_length=40, blank=True)
+        return self.user.username
 
     short_describe = models.CharField(max_length=240, help_text="Enter short Description", null=True, blank=True)
+    subscribers = models.ManyToManyField('self', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Tag(models.Model):
@@ -33,7 +25,7 @@ class Tag(models.Model):
 
 
 class Article(models.Model):
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=120, null=False)
     short_desc = models.CharField(max_length=240, null=True, blank=True)
     main_text = models.TextField(null=False)

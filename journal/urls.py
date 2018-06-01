@@ -9,5 +9,5 @@ from journal import views
 urlpatterns = [
     path('categories/', views.categories, name='categories'),
     path('authors/', views.authors, name='authors'),
-    path('', views.categories),
+    path('', RedirectView.as_view(url='/categories/', permanent=True)),
 ]

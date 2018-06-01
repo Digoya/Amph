@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'journal/css/specific.css' %}">
     <script src="{% static 'journal/js/uikit.min.js' %}"></script>
     <script src="{% static 'journal/js/uikit-icons.min.js' %}"></script>
+    <script src="{% static 'journal/js/jquery.min.js' %}"></script>
 </head>
 <body>
 <header>
@@ -118,7 +119,7 @@
     </div>
 </header>
 <!-- CONTENT-->
-<div class="uk-padding">
+<div class="uk-padding-large">
     {% block content %}
         Something Wrong
     {% endblock %}

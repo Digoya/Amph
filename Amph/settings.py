@@ -83,6 +83,14 @@ DATABASES = {
     }
 }
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+]
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -124,3 +132,11 @@ STATIC_URL = '/static/'
 
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'amph.response@gmail.com'
+EMAIL_HOST_PASSWORD = 'zolotoy_telenok'
+DEFAULT_FROM_EMAIL = 'Amph'
+DEFAULT_TO_EMAIL = 'icaac.barabashka@gmail.com'
