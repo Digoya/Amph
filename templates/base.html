@@ -35,13 +35,13 @@
                         </div>
                         <li>
                             <a href="#"><img class="uk-border-circle" width="50" height="50"
-                                             src="../static/amph/images/avatar.jpg"></a>
+                                             src="{{ user.avatar.url }}"></a>
                             <div class="uk-navbar-dropdown uk-margin-remove">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
                                     <li class="uk-active"><a href="#">Profile</a></li>
                                     <li><a href="#">Subscribes</a></li>
                                     <li><a href="#">Settings</a></li>
-                                    <li><a href="#">Exit</a></li>
+                                    <li><a href="{% url 'logout' %}">Exit</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -57,7 +57,7 @@
                         </a>
                     </div>
                     <div class="uk-navbar-item">
-                        <button class="uk-button uk-button-primary sign-in-border"
+                        <button class="uk-button uk-button-primary sign-in-border" uk-toggle="target: #sign-up-modal"
                                 type="button">SIGN UP
                         </button>
                     </div>

@@ -9,6 +9,7 @@ from journal import views
 urlpatterns = [
     path('categories/', views.categories, name='categories'),
     path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
     re_path(r'authors/$', views.authors, name='authors'),
     re_path(r'authors/(?P<author_username>\w+)/$', views.author, name='authors'),
     path('', RedirectView.as_view(url='/categories/', permanent=True)),
