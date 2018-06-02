@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amph.</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'journal/images/Logo.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'journal/css/uikit.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'journal/css/specific.css' %}">
+    <script src="{% static 'journal/js/uikit.min.js' %}"></script>
+    <script src="{% static 'journal/js/uikit-icons.min.js' %}"></script>
+    <script src="{% static 'journal/js/jquery.min.js' %}"></script>
+</head>
+<body>
+<header>
+    <!-- Modal for login -->
+    <div id="login-modal">
+        <div class="uk-margin-large">
+            <img data-src="{% static 'journal/images/Logo.png' %}"
+                 class="uk-modal-title uk-align-center uk-margin-remove-bottom" width="40" height="40" alt="" uk-img>
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <hr class="uk-margin-small-top">
+
+
+            <h3 class="uk-text-center uk-margin-small-top">Log In</h3>
+            <form action="{% url 'login' %}" id="auth" method="post">
+                {% csrf_token %}
+                <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Login or Email address</label>
+                <input class="uk-input uk-margin-small-bottom" type="text" name="username">
+                <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Password</label>
+                <input class="uk-input uk-margin-small-bottom" type="password" name="password">
+                <p class="uk-text-warning">Username or Password is incorrect</p>
+                <input class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit"
+                       value="LOG IN">
+            </form>
+            <hr>
+            <div>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">To use Amphitheater you must have cookies
+                    enabled</p>
+                <p class="uk-text-muted uk-margin-remove uk-text-small">We will never post to Twitter, Facebook, or VK
+                    without your permission</p>
+            </div>
+        </div>
+    </div>
+</header>
+<footer>
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav .uk-text-bold">
+                <li><a class="nav-news-font" href="#">Something</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Rights</a></li>
+                <li><a href="#">Authors</a></li>
+            </ul>
+        </div>
+    </nav>
+</footer>
+</body>
+</html>

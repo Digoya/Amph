@@ -2,25 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="320a9698-eac7-4982-a945-f58ddbcdfc4c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/crypt.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0007_auto_20180601_1014.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0008_user_subscribers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0009_auto_20180601_1024.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0010_auto_20180601_1034.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0011_session.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0012_auto_20180601_1508.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0013_auto_20180601_1521.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/journal/js/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/profile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media/avatars/eb_ava.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media/avatars/em_ava.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/media/avatars/f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/form.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0014_auto_20180601_1700.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0015_userprofile_avatar.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0016_auto_20180601_1819.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0017_auto_20180602_1520.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0018_auto_20180602_1524.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0019_auto_20180602_1527.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0020_auto_20180602_1532.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/journal/migrations/0021_auto_20180602_1613.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/journal/images/Logo.png" afterPath="$PROJECT_DIR$/static/journal/images/Logo.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Amph/settings.py" afterPath="$PROJECT_DIR$/Amph/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/journal/admin.py" afterPath="$PROJECT_DIR$/journal/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Amph/urls.py" afterPath="$PROJECT_DIR$/Amph/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/journal/models.py" afterPath="$PROJECT_DIR$/journal/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/journal/urls.py" afterPath="$PROJECT_DIR$/journal/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/journal/views.py" afterPath="$PROJECT_DIR$/journal/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/authors.html" afterPath="$PROJECT_DIR$/templates/authors.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/categories.html" afterPath="$PROJECT_DIR$/templates/categories.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profile.html" afterPath="$PROJECT_DIR$/templates/profile.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,41 +34,54 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Amph$Test__f672eb9dee852fac71824962d966371e91a42b5e_hq_jpg.coverage" NAME="Test: f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg Coverage Results" MODIFIED="1527942281195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/journal/views.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Amph/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+            <state relative-caret-position="0">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#628#660#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authors.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/authors.html">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/journal/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="34" column="94" lean-forward="false" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
+            <state relative-caret-position="255">
+              <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#54#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/journal/models.py">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="391">
+              <caret line="130" column="19" lean-forward="false" selection-start-line="130" selection-start-column="19" selection-end-line="130" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,19 +112,21 @@
         <option value="$PROJECT_DIR$/templates/Authors.html" />
         <option value="$PROJECT_DIR$/static/css/specific.css" />
         <option value="$PROJECT_DIR$/Amph/jinja2.py" />
-        <option value="$PROJECT_DIR$/Amph/urls.py" />
         <option value="$PROJECT_DIR$/templates/temp_auth.html" />
-        <option value="$PROJECT_DIR$/journal/urls.py" />
-        <option value="$PROJECT_DIR$/templates/categories.html" />
-        <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/static/journal/css/specific.css" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/journal/crypt.py" />
         <option value="$PROJECT_DIR$/journal/admin.py" />
-        <option value="$PROJECT_DIR$/Amph/settings.py" />
-        <option value="$PROJECT_DIR$/journal/views.py" />
-        <option value="$PROJECT_DIR$/journal/models.py" />
         <option value="$PROJECT_DIR$/templates/authors.html" />
+        <option value="$PROJECT_DIR$/templates/categories.html" />
+        <option value="$PROJECT_DIR$/Amph/settings.py" />
+        <option value="$PROJECT_DIR$/Amph/urls.py" />
+        <option value="$PROJECT_DIR$/journal/models.py" />
+        <option value="$PROJECT_DIR$/templates/profile.html" />
+        <option value="$PROJECT_DIR$/journal/urls.py" />
+        <option value="$PROJECT_DIR$/journal/form.py" />
+        <option value="$PROJECT_DIR$/journal/views.py" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
       </list>
     </option>
   </component>
@@ -145,7 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -167,6 +186,17 @@
             <path>
               <item name="Amph" type="b2602c69:ProjectViewProjectNode" />
               <item name="Amph" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Amph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Amph" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="avatars" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Amph" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Amph" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -174,13 +204,6 @@
               <item name="Amph" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="journal" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Amph" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Amph" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="journal" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Amph" type="b2602c69:ProjectViewProjectNode" />
@@ -192,19 +215,18 @@
             <path>
               <item name="Amph" type="b2602c69:ProjectViewProjectNode" />
               <item name="Amph" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="journal" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Amph" type="b2602c69:ProjectViewProjectNode" />
               <item name="Amph" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="templatesbackup" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -236,7 +258,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django server.Amph">
+  <component name="RunManager" selected="Django tests.Test: f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg">
     <configuration name="Amph" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -260,6 +282,34 @@
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
     </configuration>
+    <configuration name="Test: f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg" type="DjangoTestsConfigurationType" factoryName="Django tests" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Amph" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Django server.Amph" />
+      <item index="1" class="java.lang.String" itemvalue="Django tests.Test: f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Django tests.Test: f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -408,8 +458,20 @@
       <option name="project" value="LOCAL" />
       <updated>1527528840631</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Work with view">
+      <created>1527857575666</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1527857575666</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Test__f672eb9dee852fac71824962d966371e91a42b5e_hq_jpg - 2018.06.02 at 15h 24m 42s.xml">
+      <configuration name="Test: f672eb9dee852fac71824962d966371e91a42b5e_hq.jpg" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1554" height="916" extended-state="6" />
@@ -472,58 +534,17 @@
     <MESSAGE value="Deploy html to template engine" />
     <MESSAGE value="Linked two pages" />
     <MESSAGE value="Changed color of logos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed color of logos" />
+    <MESSAGE value="Work with view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Work with view" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="41" lean-forward="false" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/journal/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/categories.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/amph/css/specific.css" />
-    <entry file="file://$PROJECT_DIR$/templates/authors.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Amph/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/categories.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/amph/css/specific.css" />
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -643,16 +664,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Amph/jinja2.py" />
-    <entry file="file://$PROJECT_DIR$/Amph/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding>
-            <element signature="e#628#660#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/authors.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -676,37 +687,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/journal/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="73" lean-forward="true" selection-start-line="13" selection-start-column="73" selection-end-line="13" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/categories.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="76" lean-forward="false" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/journal/css/specific.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="30" lean-forward="false" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -726,27 +710,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="12" column="45" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Amph/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Amph/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,7 +721,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -762,34 +728,135 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
-          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/journal/images/default.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/journal/images/avatar.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/journal/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        <state relative-caret-position="100">
+          <caret line="18" column="95" lean-forward="false" selection-start-line="18" selection-start-column="95" selection-end-line="18" selection-end-column="95" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/categories.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="12" lean-forward="false" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Amph/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2261">
+          <caret line="133" column="21" lean-forward="false" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/authors.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="34" column="94" lean-forward="false" selection-start-line="34" selection-start-column="94" selection-end-line="34" selection-end-column="94" />
+        <state relative-caret-position="578">
+          <caret line="34" column="128" lean-forward="false" selection-start-line="34" selection-start-column="128" selection-end-line="34" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Amph/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#628#660#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/journal/form.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templatesbackup/Authors.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="47" column="14" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="47" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templatesbackup/categories.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/journal/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templatesbackup/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="99" column="10" lean-forward="true" selection-start-line="78" selection-start-column="4" selection-end-line="99" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="130" column="19" lean-forward="false" selection-start-line="130" selection-start-column="19" selection-end-line="130" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/journal/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="43" lean-forward="false" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+        <state relative-caret-position="255">
+          <caret line="15" column="44" lean-forward="true" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>

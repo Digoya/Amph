@@ -32,7 +32,11 @@
          uk-grid>
         {% for author in author_list %}
             <div>
-                <div class="uk-card uk-card-default uk-card-body uk-card-hover">{{ author.user }}</div>
+                <div class="uk-card uk-card-default uk-card-body uk-card-hover">{{ author.user.first_name }} {{ author.user.last_name }}
+                    <hr class="uk-margin-small-top uk-margin-small-bottom">
+                    <a href="{% url 'authors' %}{{ author.user }}">
+                        <div>SEE MORE</div>
+                    </a></div>
             </div>
         {% endfor %}
     </div>

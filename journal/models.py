@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from Amph.settings import BASE_DIR
 """
     Creating Object user for DB
 """
@@ -12,9 +13,10 @@ class UserProfile(models.Model):
         return self.user.username
 
     short_describe = models.CharField(max_length=240, help_text="Enter short Description", null=True, blank=True)
-    subscribers = models.ManyToManyField('self', blank=True)
+    subscribed = models.ManyToManyField('self', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    avatar = models.ImageField(default='/static/journal/images/default.png', upload_to='avatars')
 
 
 class Tag(models.Model):

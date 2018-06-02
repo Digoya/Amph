@@ -24,18 +24,45 @@
             </ul>
         </div>
         <div class="uk-navbar-right">
-            <ul class="uk-navbar-nav uk-margin-small-right">
-                <div class="uk-navbar-item">
-                    <button class="uk-button uk-button-primary sign-in-border" uk-toggle="target: #login-modal"
-                            type="button">LOG IN
-                    </button>
+            {% if user_auth %}
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav uk-margin-small-right">
+                        <div class="uk-navbar-item">
+                            <a href="" uk-icon="icon: search"></a>
+                        </div>
+                        <div class="uk-navbar-item">
+                            <a href="" uk-icon="icon: bell"></a>
+                        </div>
+                        <li>
+                            <a href="#"><img class="uk-border-circle" width="50" height="50"
+                                             src="../static/amph/images/avatar.jpg"></a>
+                            <div class="uk-navbar-dropdown uk-margin-remove">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-active"><a href="#">Profile</a></li>
+                                    <li><a href="#">Subscribes</a></li>
+                                    <li><a href="#">Settings</a></li>
+                                    <li><a href="#">Exit</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="uk-navbar-item">
-                    <button class="uk-button uk-button-primary sign-in-border" uk-toggle="target: #sign-up-modal"
-                            type="button">SIGN UP
-                    </button>
-                </div>
-            </ul>
+            {% else %}
+                <ul class="uk-navbar-nav uk-margin-small-right">
+                    <div class="uk-navbar-item">
+                        <a href="{% url 'login' %}">
+                            <button class="uk-button uk-button-primary sign-in-border" uk-toggle="target: #login-modal"
+                                    type="button">LOG IN
+                            </button>
+                        </a>
+                    </div>
+                    <div class="uk-navbar-item">
+                        <button class="uk-button uk-button-primary sign-in-border"
+                                type="button">SIGN UP
+                        </button>
+                    </div>
+                </ul>
+            {% endif %}
         </div>
     </nav>
     <!-- Modal for register -->
@@ -84,20 +111,24 @@
     <!-- Modal for login -->
     <div id="login-modal" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            <img data-src="{% static 'journal/images/Logo.png' %}"
-                 class="uk-modal-title uk-align-center uk-margin-remove-bottom" width="40" height="40" alt="" uk-img>
+            <img data-src="../static/images/Logo.png" class="uk-modal-title uk-align-center uk-margin-remove-bottom"
+                 width="40" height="40" alt="" uk-img>
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <hr class="uk-margin-small-top">
 
 
             <h3 class="uk-text-center uk-margin-small-top">Log In</h3>
-            <form id="auth" method="post">
+            <form action="{% url 'login' %}" id="auth" method="post">
+                {% csrf_token %}
                 <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Login or Email address</label>
-                <input class="uk-input uk-margin-small-bottom" type="text" name="login">
+                <input class="uk-input uk-margin-small-bottom" type="text" name="username">
                 <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Password</label>
-                <input class="uk-input uk-margin-small-bottom" type="password" name="pass">
+                <input class="uk-input uk-margin-small-bottom" type="password" name="password">
+                {% if error %}
+                    <p class="ui-state-error-text">Username or Password is incorrect</p>
+                {% endif %}
                 <input class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit"
-                       value="LOG IN" form="auth">
+                       value="LOG IN">
             </form>
             <hr>
             <div>

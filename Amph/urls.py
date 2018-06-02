@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from journal import urls
-from django.views.generic import RedirectView
-from django.conf import settings
-from django.conf.urls.static import static
-from journal import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('journal/', include('journal.urls')),
     path('', include('journal.urls'))
 ]
+
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
