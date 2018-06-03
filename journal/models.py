@@ -6,6 +6,11 @@ from Amph.settings import BASE_DIR
 """
 
 
+class EmailVerification(models.Model):
+    email = models.EmailField()
+    email_key = models.CharField(max_length=120, blank=True)
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
