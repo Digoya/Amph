@@ -2,9 +2,25 @@ from django.shortcuts import render, get_object_or_404
 from journal.models import UserProfile, Article, EmailVerification
 from django.core import exceptions
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.http import HttpResponseRedirect, HttpRequest
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404
 from django.core.mail import send_mail
+from journal.forms import RegistrationForm
 import hashlib
+
+
+def check(request):
+    form = RegistrationForm()
+    return render(request, 'registration.html', context={'form': form})
+
+
+# Registration view
+
+
+def sign_up(request):
+    return Http404
+
+
+# Take url with hashed email and checks existence in db
 
 
 def email_check(request, email_key):
@@ -17,28 +33,44 @@ def email_check(request, email_key):
         return render(request, '', {'content': 'Your email has confirmed'})
 
 
-def email_sighup(request):
-    email = request.POST.get('email')
-    user_email = EmailVerification(email=email, email_key=hashlib.md5(email.encode()).hexdigest())
-    user_email.save()
-    send_mail('Amph Email',
-              'http://127.0.0.1:8000/email-verification/' + hashlib.md5(email.encode('utf-8')).hexdigest(),
-              'amph.response@gmail.com',
-              [email],
-              fail_silently=False,
-              )
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+# Sends letter with link to confirm user email
+
+
+def email_signup(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user_email = EmailVerification(email=email, email_key=hashlib.md5(email.encode()).hexdigest())
+        user_email.save()
+        send_mail('Amph Email',
+                  'Please confirm your email: http://127.0.0.1:8000/email-verification/' + hashlib.md5(
+                      email.encode('utf-8')).hexdigest(),
+                  'amph.response@gmail.com',
+                  [email],
+                  fail_silently=False,
+                  )
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        raise HttpResponseForbidden
+
+
+# Checks login and password and authenticate the user
 
 
 def login(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        auth_login(request, user)
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        else:
+            return render(request, 'login.html')
     else:
-        return render(request, 'login.html')
+        raise HttpResponseForbidden
+
+
+# Logout user
 
 
 def logout(request):
@@ -46,8 +78,14 @@ def logout(request):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+# Shows Categories
+
+
 def categories(request):
     return render(request, 'categories.html')
+
+
+# Shows authors
 
 
 def authors(request):
@@ -55,6 +93,9 @@ def authors(request):
     content = {'author_list': author_list,
                }
     return render(request, 'authors.html', content)
+
+
+# Shows certain profile
 
 
 def author(request, author_username):

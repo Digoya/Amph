@@ -91,7 +91,7 @@
 
             <h3 class="uk-text-center uk-margin-small-top">Or Sign In Via Email</h3>
             <hr>
-            <form action="{% url 'email_sighup' %}" id="sign-in" method="post">
+            <form action="{% url 'email_signup' %}" id="sign-in" method="post">
                 {% csrf_token %}
                 <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Email address</label>
                 <input class="uk-input uk-margin-small-bottom" type="text" name="email">

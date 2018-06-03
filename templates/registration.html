@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block actnav %}
+    <li><a href="trends">Trends</a></li>
+    <li><a href="magazines">Magazines</a></li>
+    <div class="uk-navbar-item">
+        <img data-src="{% static 'journal/images/Logo.png' %}" width="50" height="50" alt="" uk-img>
+    </div>
+    <li><a href="{% url 'categories' %}">Categories</a></li>
+    <li><a href="{% url 'authors' %}">Authors</a></li>
+{% endblock %}
+{% block underheader %}
+    <div class="uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle"
+         style="background-image: url({% static 'journal/images/NavBarBackground.jpg' %});">
+        <h1 class="uk-h4 nav-text-form">Fill the registration Form</h1>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="uk-margin-large">
+        <form action="{% url 'sign_up' %}" method="post">
+            {{ form.as_p }}
+            <input type="submit" value="Register"
+                   class="uk-button uk-button-default uk-margin-small uk-align-center submit-login">
+        </form>
+    </div>
+{% endblock %}

@@ -13,7 +13,8 @@ urlpatterns = [
     re_path(r'authors/$', views.authors, name='authors'),
     re_path(r'authors/(?P<author_username>\w+)/$', views.author, name='authors'),
     re_path(r'email-verification/(?P<email_key>\w+)/$', views.email_check, name='email_check'),
-    path('email/', views.email_sighup, name='email_sighup'),
+    path('email/', views.email_signup, name='email_signup'),
+    path('register-check/', views.sign_up, name='sign_up'),
     path('', RedirectView.as_view(url='/categories/', permanent=True)),
-
+    path('registration/', views.check, name='check'),
 ]
