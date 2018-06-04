@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import UserProfile, Article, Tag
+from journal import models
 
-admin.site.register(UserProfile)
-admin.site.register(Article)
-admin.site.register(Tag)
+admin.site.register(models.UserProfile)
+admin.site.register(models.Article)
+admin.site.register(models.Tag)
+admin.site.register(models.EmailVerification)

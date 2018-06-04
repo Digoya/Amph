@@ -18,6 +18,7 @@
 {% block content %}
     <div class="uk-margin-large">
         <form action="{% url 'sign_up' %}" method="post">
+            {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Register"
                    class="uk-button uk-button-default uk-margin-small uk-align-center submit-login">

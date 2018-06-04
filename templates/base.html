@@ -33,7 +33,11 @@
                         </div>
                         <li>
                             <a href="#"><img class="uk-border-circle" width="50" height="50"
-                                             src="{{ user.avatar.url }}"></a>
+                                             src="{% if author.avatar.url != '' %}
+                                                        {{ author.avatar.url }}
+                                                    {% else %}
+                                                        {% static 'journal/images/default.png' %}
+                                                    {% endif %}"></a>
                             <div class="uk-navbar-dropdown uk-margin-remove">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
                                     <li class="uk-active"><a href="#">Profile</a></li>
@@ -94,8 +98,9 @@
             <form action="{% url 'email_signup' %}" id="sign-in" method="post">
                 {% csrf_token %}
                 <label class="uk-margin-remove-bottom uk-text-small uk-text-muted">Email address</label>
-                <input class="uk-input uk-margin-small-bottom" type="text" name="email">
-                <input class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit"
+                <input id="email" class="uk-input uk-margin-small-bottom" type="text" name="email">
+                <input id="sign-in-submit"
+                       class="uk-button uk-button-default uk-margin-small uk-align-center submit-login" type="submit"
                        value="Sign in via Email">
             </form>
             <hr>
@@ -162,7 +167,7 @@
                 <li><a class="nav-news-font" href="#">Something</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Rights</a></li>
-                <li><a href="#">Authors</a></li>
+                <li><a href="#">{{ user_auth }}</a></li>
             </ul>
         </div>
     </nav>

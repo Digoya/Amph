@@ -20,4 +20,4 @@ class RegistrationForm(forms.Form):
                                         ))
     birth_year = forms.DateField(widget=forms.SelectDateWidget(years=[i + 1 for i in range(1909, 2018)],
                                                                attrs={'class': 'uk-margin-small-bottom'}))
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.HiddenInput)

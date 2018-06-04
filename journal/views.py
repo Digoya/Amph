@@ -2,10 +2,16 @@ from django.shortcuts import render, get_object_or_404
 from journal.models import UserProfile, Article, EmailVerification
 from django.core import exceptions
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404, HttpResponse
 from django.core.mail import send_mail
 from journal.forms import RegistrationForm
+from django.core.exceptions import ValidationError
+from django.core.validators import EmailValidator
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from django.urls import reverse
 import hashlib
+import json
 
 
 def check(request):
@@ -17,20 +23,30 @@ def check(request):
 
 
 def sign_up(request):
-    return Http404
+    form = RegistrationForm(request.POST)
+    if form.is_valid():
+        user = User(username=form.cleaned_data['username'],
+                    password=make_password(form.cleaned_data['password']),
+                    email=form.cleaned_data['email'])
+        user.save()
+        new_user = UserProfile(user=user)
+        new_user.short_describe = form.cleaned_data['describe_yourself']
+        new_user.save()
+        EmailVerification.objects.get(email=form.cleaned_data['email']).delete()
+        return HttpResponseRedirect('/categories/')
 
 
 # Take url with hashed email and checks existence in db
 
 
 def email_check(request, email_key):
-    email = EmailVerification.objects.get(email_key=email_key)
-    if email is None:
-        return render(request, 'base.html', {'content': 'Something went wrong'})
+    email_instance = EmailVerification.objects.get(email_key=email_key)
+    user_instance = UserProfile.objects.filter(user__email=email_instance.email).exists()
+    if email_instance is None or user_instance:
+        return render(request, 'base.html', {'content': 'This email already taken or invalid'})
     else:
-        user_email = email.email
-        email.delete()
-        return render(request, '', {'content': 'Your email has confirmed'})
+        form = RegistrationForm(initial={'email': email_instance.email})
+        return render(request, 'registration.html', {'form': form})
 
 
 # Sends letter with link to confirm user email
@@ -39,6 +55,11 @@ def email_check(request, email_key):
 def email_signup(request):
     if request.method == 'POST':
         email = request.POST.get('email')
+        validator = EmailValidator()
+        try:
+            validator(email)
+        except ValidationError:
+            raise HttpResponseForbidden
         user_email = EmailVerification(email=email, email_key=hashlib.md5(email.encode()).hexdigest())
         user_email.save()
         send_mail('Amph Email',
@@ -49,6 +70,10 @@ def email_signup(request):
                   fail_silently=False,
                   )
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        # return HttpResponse(
+        #     json.dumps({'email': email}),
+        #     content_type='application/json',
+        # )
     else:
         raise HttpResponseForbidden
 
@@ -63,11 +88,11 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            return HttpResponseRedirect(reverse('author', args=(username,)))
         else:
             return render(request, 'login.html')
     else:
-        raise HttpResponseForbidden
+        return HttpResponse(request, 'User or Password is incorrect')
 
 
 # Logout user

@@ -14,10 +14,21 @@
     <div class=" uk-column-1-2 uk-box-shadow-medium uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle"
          style="background-color: #f8f8f8;">
         <div class="uk-align-left">
-            <img class="uk-border-circle" width="150" height="150" src="{{ author.avatar.url }}">
+            <img class="uk-border-circle" width="150" height="150" src="
+                    {% if author.avatar.url != '' %}
+                        {{ author.avatar.url }}
+                    {% else %}
+                        {% static 'journal/images/default.png' %}
+                    {% endif %}">
         </div>
         <div>
-            <h1 class="uk-margin-remove">{{ author.user.first_name }} {{ author.user.last_name }}</h1>
+            <h1 class="uk-margin-remove">
+                {% if author.user.first_name != '' %}
+                    {{ author.user.first_name }} {{ author.user.last_name }}
+                {% else %}
+                    {{ author.user.username }}
+                {% endif %}
+            </h1>
             <h3 class="uk-text-muted uk-margin-remove-top">{{ author.short_describe }}</h3>
             <h4 class="uk-text-muted">{{ sub_amount }} followers</h4>
             <a href="#" class="uk-button uk-button-default uk-border-rounded substyle">SUBSCRIBE</a>
