@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block actnav %}
+    <li><a href="trends">Trends</a></li>
+    <li><a href="magazines">Magazines</a></li>
+    <div class="uk-navbar-item">
+        <img data-src="{% static 'journal/images/Logo.png' %}" width="50" height="50" alt="" uk-img>
+    </div>
+    <li><a href="{% url 'categories' %}">Categories</a></li>
+    <li class="uk-active"><a href="{% url 'authors' %}">Authors</a></li>
+{% endblock %}
+<!-- UNDERHEADER -->
+{% block underheader %}
+    <div class="uk-box-shadow-medium uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle"
+         style="background-color: #f8f8f8;">
+        <form>
+            <legend class="uk-legend">Find authors, that you like, choose by:</legend>
+            <div class="uk-margin">
+                <select class="uk-select">
+                    <option>By Subscribes</option>
+                    <option>By Newest</option>
+                    <option>By Oldest</option>
+                </select>
+            </div>
+        </form>
 
-</body>
-</html>
+    </div>
+{% endblock %}
+<!-- Category made of Cards-->
+{% block content %}
+    <div class="uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-margin-small uk-margin-medium uk-text-center"
+         uk-grid>
+        {% for author in author_list %}
+            <div>
+                <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+                    {% if author.user.first_name != '' %}
+                        {{ author.user.first_name }} {{ author.user.last_name }}
+                    {% else %}
+                        {{ author.user.username }}
+                    {% endif %}
+
+                    <hr class="uk-margin-small-top uk-margin-small-bottom">
+                    <a href="{% url 'authors' %}{{ author.user }}">
+                        <div>SEE MORE</div>
+                    </a></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

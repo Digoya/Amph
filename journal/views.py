@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.urls import reverse
 import hashlib
+import urllib.parse as decoder
 import json
 
 
@@ -135,3 +136,9 @@ def author(request, author_username):
                'journals': journals,
                }
     return render(request, 'profile.html', content)
+
+
+def journal(request, journal_name):
+    journal_instance = Journal.objects.get(journal_name=decoder.unquote(journal_name))
+    content = {'journal': journal_instance, }
+    return render(request, 'journal.html', content)

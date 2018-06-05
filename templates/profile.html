@@ -37,13 +37,15 @@
 {% endblock %}
 <!-- Category made of Cards-->
 {% block content %}
-    <div class="uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-margin-small uk-margin-medium uk-text-center"
+    <div class="uk-grid uk-child-width-1-3@s uk-child-width-1-4@m uk-grid-margin-small uk-margin-medium uk-text-center"
          uk-grid>
         {% if journals %}
             {% for journal in journals %}
                 <div>
-                    <div class="uk-card uk-card-default uk-card-body uk-card-hover uk-background-center-center "
-                         style="background-image: url({{ journal.avatar.url }});">{{ journal.journal_name }}</div>
+                    <a style="text-decoration: none;" href="{% url 'journal' %}{{ journal. }}">
+                        <div class=" uk-text-large uk-card uk-card-default uk-card-body uk-height-large uk-card-large uk-card-hover uk-background-center-center "
+                             style="background-image: url({{ journal.avatar.url }});  color: #f8f8f8; ">{{ journal.journal_name }}</div>
+                    </a>
                 </div>
             {% endfor %}
         {% else %}
