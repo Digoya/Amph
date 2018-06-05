@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from journal.models import UserProfile, Article, EmailVerification
+from journal.models import *
 from django.core import exceptions
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404, HttpResponse
@@ -127,11 +127,11 @@ def author(request, author_username):
     try:
         get_author = get_object_or_404(UserProfile, user__username=author_username)
         sub_amount = UserProfile.objects.filter(subscribed__user__username__exact=author_username).count()
-        articles = Article.objects.filter(author=get_author)
+        journals = Journal.objects.filter(author=get_author)
     except exceptions.ObjectDoesNotExist:
         get_author = None
     content = {'author': get_author,
                'sub_amount': sub_amount,
-               'articles': articles,
+               'journals': journals,
                }
     return render(request, 'profile.html', content)

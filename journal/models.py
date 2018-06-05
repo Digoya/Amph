@@ -35,10 +35,22 @@ class Tag(models.Model):
         return self.tag_name
 
 
+class Journal(models.Model):
+    author = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
+    journal_name = models.CharField(max_length=100, default='No Name')
+    tags = models.ManyToManyField(Tag, blank=True)
+    avatar = models.ImageField(blank=True, upload_to='journal_cover')
+
+    def __str__(self):
+        return self.journal_name
+
+
 class Article(models.Model):
+    journal = models.ForeignKey(Journal, on_delete=models.CASCADE, null=True)
     author = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=120, null=False)
-    short_desc = models.CharField(max_length=10000, default=" ")
+    short_desc = models.CharField(max_length=360, default=" ")
+    body = models.CharField(max_length=5000, default=" ")
     tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):

@@ -39,10 +39,11 @@
 {% block content %}
     <div class="uk-grid uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-margin-small uk-margin-medium uk-text-center"
          uk-grid>
-        {% if articles %}
-            {% for article in articles %}
+        {% if journals %}
+            {% for journal in journals %}
                 <div>
-                    <div class="uk-card uk-card-default uk-card-body uk-card-hover">{{ article.title }}</div>
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hover uk-background-center-center "
+                         style="background-image: url({{ journal.avatar.url }});">{{ journal.journal_name }}</div>
                 </div>
             {% endfor %}
         {% else %}
