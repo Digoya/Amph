@@ -2,14 +2,16 @@ from django.shortcuts import render, get_object_or_404
 from journal.models import *
 from django.core import exceptions
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404, HttpResponse
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404, HttpResponse, \
+    HttpResponseBadRequest
 from django.core.mail import send_mail
-from journal.forms import RegistrationForm
+from journal.forms import RegistrationForm, SettingsForm
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.urls import reverse
+from django.utils.cache import iri_to_uri
 import hashlib
 import urllib.parse as decoder
 import json
@@ -60,7 +62,7 @@ def email_signup(request):
         try:
             validator(email)
         except ValidationError:
-            raise HttpResponseForbidden
+            raise HttpResponseBadRequest
         user_email = EmailVerification(email=email, email_key=hashlib.md5(email.encode()).hexdigest())
         user_email.save()
         send_mail('Amph Email',
@@ -76,7 +78,7 @@ def email_signup(request):
         #     content_type='application/json',
         # )
     else:
-        raise HttpResponseForbidden
+        raise HttpResponseBadRequest
 
 
 # Checks login and password and authenticate the user
@@ -92,8 +94,7 @@ def login(request):
             return HttpResponseRedirect(reverse('author', args=(username,)))
         else:
             return render(request, 'login.html')
-    else:
-        return HttpResponse(request, 'User or Password is incorrect')
+    return HttpResponse(request, 'User or Password is incorrect')
 
 
 # Logout user
@@ -138,7 +139,55 @@ def author(request, author_username):
     return render(request, 'profile.html', content)
 
 
-def journal(request, journal_name):
-    journal_instance = Journal.objects.get(journal_name=decoder.unquote(journal_name))
-    content = {'journal': journal_instance, }
+def journal(request, author_username, journal_name):
+    journal_instance = Journal.objects.get(journal_name=journal_name.replace("_", " "))
+    articles = Article.objects.filter(journal__journal_name=journal_name.replace("_", " "))
+    content = {'author': author_username,
+               'journal': journal_instance,
+               'articles': articles,
+               }
     return render(request, 'journal.html', content)
+
+
+def article(request, author_username, journal_name, article_name):
+    article_instance = Article.objects.get(title=article_name.replace("_", " "))
+    content = {'article': article_instance,
+               'author': author_username,
+               'journal_name': journal_name,
+               }
+    return render(request, 'article.html', content)
+
+
+def settings(request):
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user__username=request.user.username)
+        form = SettingsForm(initial={'username': user.user.username,
+                                     'describe_yourself': user.short_describe,
+                                     'gender': user.gender,
+                                     'birth_year': user.birth_year,
+                                     'email': user.user.email,
+                                     })
+        return render(request, 'settings.html', {'form': form})
+    else:
+        return render(request, 'login.html')
+
+
+def save_changes(request):
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user__username=request.user)
+        form = SettingsForm(request.POST)
+        if form.is_valid():
+            user.user.username = form.cleaned_data['username']
+            if make_password(form.cleaned_data['old_password']) == user.user.password and form.cleaned_data[
+                'new_password'] != '':
+                user.user.password = make_password(form.cleaned_data['new_password'])
+            user.user.email = form.cleaned_data['email']
+            user.save()
+            user.short_describe = form.cleaned_data['describe_yourself']
+            user.birth_year = form.cleaned_data['birth_year']
+            user.gender = form.cleaned_data['gender']
+            user.save()
+            return HttpResponseRedirect('/authors/' + user.user.username + '/settings/')
+
+    else:
+        return render(request, 'login.html')

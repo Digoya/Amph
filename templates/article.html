@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block actnav %}
+    <li><a href="trends">Trends</a></li>
+    <li><a href="magazines">Magazines</a></li>
+    <div class="uk-navbar-item">
+        <img data-src="{% static 'journal/images/Logo.png' %}" width="50" height="50" alt="" uk-img>
+    </div>
+    <li><a href="{% url 'categories' %}">Categories</a></li>
+    <li class="uk-active"><a href="{% url 'authors' %}">Authors</a></li>
+{% endblock %}
+<!-- UNDERHEADER -->
+{% block underheader %}
+    <div class="uk-box-shadow-medium uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle"
+         style="background-color: #f8f8f8;">
+        <h1>{{ article.title }}</h1>
+    </div>
+{% endblock %}
+<!-- Text-->
+{% block content %}
+    <div class="uk-grid uk-child-width-1-1@s uk-child-width-3-4@m uk-margin-medium uk-text-center"
+         uk-grid>
+        <div class="uk-text-center uk-align-center">
+            <p>
+                {{ article.body }}
+            </p>
+        </div>
+    </div>
+{% endblock %}

@@ -21,10 +21,17 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    GENDER = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('NS', 'Not Selected'),
+    )
+    gender = models.CharField(max_length=2, choices=GENDER, default='NS')
     short_describe = models.CharField(max_length=240, help_text="Enter short Description", null=True, blank=True)
     subscribed = models.ManyToManyField('self', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    birth_year = models.DateField(blank=True, null=True)
     avatar = models.ImageField(blank=True, upload_to='avatars')
 
 

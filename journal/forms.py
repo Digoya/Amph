@@ -24,29 +24,25 @@ class RegistrationForm(forms.Form):
 
 
 class SettingsForm(forms.Form):
-    username = forms.CharField(max_length=15, required=True,
+    username = forms.CharField(max_length=15, required=False,
                                widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}))
 
     old_password = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'uk-input uk-margin-small-bottom'}),
-        required=True)
-
-    repeat_old_password = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'uk-input uk-margin-small-bottom'}),
-        required=True, )
+        attrs={'class': 'uk-input uk-margin-small-bottom'}), required=False)
 
     new_password = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'uk-input uk-margin-small-bottom'}),
-        required=True, )
+        attrs={'class': 'uk-input uk-margin-small-bottom'}), required=False)
 
     describe_yourself = forms.CharField(required=False, max_length=240,
                                         widget=forms.Textarea(attrs={'class': 'uk-input uk-margin-small-bottom'}))
 
-    gender = forms.ChoiceField(choices=(('Male', 'Male'),
-                                        ('Female', 'Female'),
+    gender = forms.ChoiceField(choices=(('M', 'Male'),
+                                        ('F', 'Female'),
+                                        ('NS', 'Not Selected'),
                                         ))
 
     birth_year = forms.DateField(widget=forms.SelectDateWidget(years=[i + 1 for i in range(1909, 2018)],
-                                                               attrs={'class': 'uk-margin-small-bottom'}))
+                                                               attrs={'class': 'uk-margin-small-bottom'}),
+                                 required=False)
 
-    email = forms.EmailField(widget=forms.HiddenInput)
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}), required=False)

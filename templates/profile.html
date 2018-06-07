@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom %}
 {% block actnav %}
     <li><a href="trends">Trends</a></li>
     <li><a href="magazines">Magazines</a></li>
@@ -42,7 +43,8 @@
         {% if journals %}
             {% for journal in journals %}
                 <div>
-                    <a style="text-decoration: none;" href="{% url 'journal' %}{{ journal. }}">
+                    <a style="text-decoration: none;"
+                       href="{% url 'authors' %}{{ author.user }}/journal/{{ journal.journal_name|string_trans }}">
                         <div class=" uk-text-large uk-card uk-card-default uk-card-body uk-height-large uk-card-large uk-card-hover uk-background-center-center "
                              style="background-image: url({{ journal.avatar.url }});  color: #f8f8f8; ">{{ journal.journal_name }}</div>
                     </a>
