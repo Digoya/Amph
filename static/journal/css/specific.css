@@ -56,3 +56,17 @@
     color: white;
     background-color: #2daa76;
 }
+
+.unsubstyle {
+    background-color: gray;
+    border-radius: 20px;
+    border-color: gray;
+    color: white;
+}
+
+.unsubstyle:hover {
+    border-radius: 20px;
+    border-color: darkgray;
+    color: white;
+    background-color: darkgray;
+}

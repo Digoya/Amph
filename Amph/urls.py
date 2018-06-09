@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from journal.views import ajax
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('journal/', include('journal.urls')),
-    path('', include('journal.urls'))
+    path('ajax/', ajax, name='ajax'),
+    path('', include('journal.urls')),
+
 ]
 
 from . import settings

@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from journal.models import *
 from django.core import exceptions
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404, HttpResponse, \
-    HttpResponseBadRequest
+    HttpResponseBadRequest, JsonResponse
 from django.core.mail import send_mail
 from journal.forms import RegistrationForm, SettingsForm
 from django.core.exceptions import ValidationError
@@ -17,14 +17,13 @@ import urllib.parse as decoder
 import json
 
 
+# Check registration form
 def check(request):
     form = RegistrationForm()
     return render(request, 'registration.html', context={'form': form})
 
 
 # Registration view
-
-
 def sign_up(request):
     form = RegistrationForm(request.POST)
     if form.is_valid():
@@ -40,8 +39,6 @@ def sign_up(request):
 
 
 # Take url with hashed email and checks existence in db
-
-
 def email_check(request, email_key):
     email_instance = EmailVerification.objects.get(email_key=email_key)
     user_instance = UserProfile.objects.filter(user__email=email_instance.email).exists()
@@ -53,8 +50,6 @@ def email_check(request, email_key):
 
 
 # Sends letter with link to confirm user email
-
-
 def email_signup(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -82,39 +77,29 @@ def email_signup(request):
 
 
 # Checks login and password and authenticate the user
-
-
 def login(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and not request.user.is_authenticated:
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
             return HttpResponseRedirect(reverse('author', args=(username,)))
-        else:
-            return render(request, 'login.html')
-    return HttpResponse(request, 'User or Password is incorrect')
+    return render(request, 'login.html')
 
 
 # Logout user
-
-
 def logout(request):
     auth_logout(request)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 # Shows Categories
-
-
 def categories(request):
     return render(request, 'categories.html')
 
 
 # Shows authors
-
-
 def authors(request):
     author_list = UserProfile.objects.order_by('user__username')[:5]
     content = {'author_list': author_list,
@@ -123,22 +108,26 @@ def authors(request):
 
 
 # Shows certain profile
-
-
 def author(request, author_username):
+    is_sub = False
     try:
         get_author = get_object_or_404(UserProfile, user__username=author_username)
         sub_amount = UserProfile.objects.filter(subscribed__user__username__exact=author_username).count()
         journals = Journal.objects.filter(author=get_author)
+        if request.user.is_authenticated:
+            is_sub = UserProfile.objects.get(user=request.user).subscribed.filter(
+                user__username=author_username).exists()
     except exceptions.ObjectDoesNotExist:
         get_author = None
     content = {'author': get_author,
                'sub_amount': sub_amount,
                'journals': journals,
+               'is_sub': is_sub,
                }
     return render(request, 'profile.html', content)
 
 
+# Shows profile journals
 def journal(request, author_username, journal_name):
     journal_instance = Journal.objects.get(journal_name=journal_name.replace("_", " "))
     articles = Article.objects.filter(journal__journal_name=journal_name.replace("_", " "))
@@ -149,6 +138,7 @@ def journal(request, author_username, journal_name):
     return render(request, 'journal.html', content)
 
 
+# Shows articles in journal
 def article(request, author_username, journal_name, article_name):
     article_instance = Article.objects.get(title=article_name.replace("_", " "))
     content = {'article': article_instance,
@@ -158,6 +148,7 @@ def article(request, author_username, journal_name, article_name):
     return render(request, 'article.html', content)
 
 
+# Shows user settings
 def settings(request):
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user__username=request.user.username)
@@ -172,6 +163,7 @@ def settings(request):
         return render(request, 'login.html')
 
 
+# Save setup
 def save_changes(request):
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user__username=request.user)
@@ -191,3 +183,28 @@ def save_changes(request):
 
     else:
         return render(request, 'login.html')
+
+
+# Ajax subscribe
+def ajax(request):
+    # Subscribe function
+    if request.POST.get('function') == 'subscribe':
+        if request.user.is_authenticated and \
+                UserProfile.objects.filter(user_id=request.POST.get('author')).exists() and \
+                not UserProfile.objects.get(user=request.user).subscribed.filter(
+                    id=request.POST.get('author')).exists():
+            user = UserProfile.objects.get(user_id=request.user.id)
+            user.subscribed.add(request.POST.get('author'))
+            user.save()
+            return HttpResponse("OK", status=200)
+        return HttpResponse("User is not exists or already subscribed", status=200)
+    # Unsubscribe function
+    elif request.POST.get('function') == 'unsubscribe':
+        if request.user.is_authenticated and \
+                UserProfile.objects.filter(user_id=request.POST.get('author')).exists() and \
+                UserProfile.objects.get(user=request.user).subscribed.filter(id=request.POST.get('author')).exists():
+            user = UserProfile.objects.get(user_id=request.user.id)
+            user.subscribed.remove(request.POST.get('author'))
+            user.save()
+            return HttpResponse("OK", status=200)
+    return HttpResponse("Function is not familiar", status=404)

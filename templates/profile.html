@@ -32,7 +32,17 @@
             </h1>
             <h3 class="uk-text-muted uk-margin-remove-top">{{ author.short_describe }}</h3>
             <h4 class="uk-text-muted">{{ sub_amount }} followers</h4>
-            <a href="#" class="uk-button uk-button-default uk-border-rounded substyle">SUBSCRIBE</a>
+            {% if  user.user.username != author.user.username %}
+
+                <a id="unsubscribe" {% if not is_sub %} style="display: none"{% endif %}
+                   class="uk-button uk-button-default uk-border-rounded unsubstyle"
+                   onclick="subscribeOn({{ author.user.id }}, $(this))">UNSUBSCRIBE</a>
+
+                <a id="subscribe" {% if is_sub %} style="display: none" {% endif %}
+                   class="uk-button uk-button-default uk-border-rounded substyle"
+                   onclick="subscribeOn({{ author.user.id }}, $(this))">SUBSCRIBE</a>
+
+            {% endif %}
         </div>
     </div>
 {% endblock %}
@@ -50,6 +60,20 @@
                     </a>
                 </div>
             {% endfor %}
+            {% if user_auth %}
+                <a style="text-decoration: none;">
+                    <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+                        Create new Journal
+                    </div>
+                </a>
+            {% endif %}
+        {% elif user_auth %}
+            <a style="text-decoration: none;">
+                <div class=" uk-text-large uk-card uk-card-default uk-card-body uk-height-large uk-card-large uk-card-hover ">
+                    Create new Journal
+                </div>
+            </a>
+            <p class="uk-align-center">There is no Articles yet, but you can create</p>
         {% else %}
             <p class="uk-align-center">There is no Articles yet</p>
         {% endif %}
