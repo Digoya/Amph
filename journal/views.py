@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.http import HttpResponseRedirect, HttpRequest, HttpResponseForbidden, Http404, HttpResponse, \
     HttpResponseBadRequest, JsonResponse
 from django.core.mail import send_mail
-from journal.forms import RegistrationForm, SettingsForm
+from journal.forms import RegistrationForm, SettingsForm, CreateArticle, CreateJournal
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.contrib.auth.models import User
@@ -136,6 +136,11 @@ def journal(request, author_username, journal_name):
                'articles': articles,
                }
     return render(request, 'journal.html', content)
+
+
+# Shows creation form
+def create_journal(request, author_username, action):
+    return HttpResponseForbidden
 
 
 # Shows articles in journal

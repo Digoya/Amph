@@ -46,3 +46,15 @@ class SettingsForm(forms.Form):
                                  required=False)
 
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}), required=False)
+
+
+class CreateJournal(forms.Form):
+    journal_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}))
+    short_disc = forms.CharField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}))
+    # tags =
+
+
+class CreateArticle(forms.Form):
+    article_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}))
+    article_body = forms.CharField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}))
+    # tags =

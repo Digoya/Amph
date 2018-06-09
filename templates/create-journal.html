@@ -12,12 +12,12 @@
 {% block underheader %}
     <div class="uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle"
          style="background-image: url({% static 'journal/images/NavBarBackground.jpg' %});">
-        <h1 class="uk-h4 nav-text-form">Create a new Article</h1>
+        <h1 class="uk-h4 nav-text-form">Create a new Journal</h1>
     </div>
 {% endblock %}
 {% block content %}
     <div class="uk-margin-large">
-        <form action="{% url 'authors' %}{{ user.user.username }}/journal/create-journal/" method="post">
+        <form action="{% url 'authors' %}{{ user.user.username }}/journal/create-journal/create/" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Create"

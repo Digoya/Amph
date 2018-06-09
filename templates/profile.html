@@ -61,14 +61,16 @@
                 </div>
             {% endfor %}
             {% if user_auth %}
-                <a style="text-decoration: none;">
+                <a href="{% url 'authors' %}{{ user.user.username }}/journal/create-journal/"
+                   style="text-decoration: none;">
                     <div class="uk-card uk-card-default uk-card-body uk-card-hover">
                         Create new Journal
                     </div>
                 </a>
             {% endif %}
         {% elif user_auth %}
-            <a style="text-decoration: none;">
+            <a href="{% url 'authors' %}{{ user.user.username }}/journal/create-journal/"
+               style="text-decoration: none;">
                 <div class=" uk-text-large uk-card uk-card-default uk-card-body uk-height-large uk-card-large uk-card-hover ">
                     Create new Journal
                 </div>

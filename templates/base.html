@@ -40,7 +40,7 @@
                                                     {% endif %}"></a>
                             <div class="uk-navbar-dropdown uk-margin-remove">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
-                                    <li class="uk-active"><a href="#">Profile</a></li>
+                                    <li><a href="{% url 'authors' %}{{ user.user.username }}">Profile</a></li>
                                     <li><a href="#">Subscribes</a></li>
                                     <li><a href="{% url 'authors' %}settings/">Settings</a></li>
                                     <li><a href="{% url 'logout' %}">Exit</a></li>

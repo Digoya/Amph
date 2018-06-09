@@ -45,6 +45,7 @@ class Tag(models.Model):
 class Journal(models.Model):
     author = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     journal_name = models.CharField(max_length=100, default='No Name')
+    short_disc = models.CharField(max_length=240, default="")
     tags = models.ManyToManyField(Tag, blank=True)
     avatar = models.ImageField(blank=True, upload_to='journal_cover')
 
