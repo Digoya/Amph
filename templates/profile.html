@@ -56,20 +56,22 @@
                     <a style="text-decoration: none;"
                        href="{% url 'authors' %}{{ author.user }}/journal/{{ journal.journal_name|string_trans }}">
                         <div class=" uk-text-large uk-card uk-card-default uk-card-body uk-height-large uk-card-large uk-card-hover uk-background-center-center "
-                             style="background-image: url({{ journal.avatar.url }});  color: #f8f8f8; ">{{ journal.journal_name }}</div>
+                             style="background-image: url(
+                                     {% if  journal.avatar.url != "" %}{{ journal.avatar.url }}{% endif %});
+                                     color: #f8f8f8; ">{{ journal.journal_name }}</div>
                     </a>
                 </div>
             {% endfor %}
-            {% if user_auth %}
-                <a href="{% url 'authors' %}{{ user.user.username }}/journal/create-journal/"
+            {% if user_auth and user.user.username is author.user %}
+                <a href="{% url 'authors' %}{{ user.user.username }}/journal/create/create-journal/"
                    style="text-decoration: none;">
                     <div class="uk-card uk-card-default uk-card-body uk-card-hover">
                         Create new Journal
                     </div>
                 </a>
             {% endif %}
-        {% elif user_auth %}
-            <a href="{% url 'authors' %}{{ user.user.username }}/journal/create-journal/"
+        {% elif user_auth and user.user.username is author.user %}
+            <a href="{% url 'authors' %}{{ user.user.username }}/journal/create/create-journal/"
                style="text-decoration: none;">
                 <div class=" uk-text-large uk-card uk-card-default uk-card-body uk-height-large uk-card-large uk-card-hover ">
                     Create new Journal

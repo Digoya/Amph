@@ -57,8 +57,8 @@ class Article(models.Model):
     journal = models.ForeignKey(Journal, on_delete=models.CASCADE, null=True)
     author = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=120, null=False)
-    short_desc = models.CharField(max_length=360, default=" ")
-    body = models.CharField(max_length=5000, default=" ")
+    short_desc = models.CharField(max_length=360, default="")
+    body = models.TextField(default="")
     tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):

@@ -17,7 +17,8 @@
 {% endblock %}
 {% block content %}
     <div class="uk-margin-large">
-        <form action="{% url 'authors' %}{{ user.user.username }}/journal/create-journal/create/" method="post">
+        <form action="{% url 'authors' %}{{ user.user.username }}/journal/create/save-journal/" method="post"
+              enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Create"

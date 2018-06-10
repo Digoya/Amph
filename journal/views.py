@@ -139,8 +139,34 @@ def journal(request, author_username, journal_name):
 
 
 # Shows creation form
-def create_journal(request, author_username, action):
-    return HttpResponseForbidden
+def create(request, author_username, action, journal_name=''):
+    if action == "create-journal" and request.user.is_authenticated:
+        form = CreateJournal
+        return render(request, 'create-journal.html', {'form': form})
+    elif action == "save-journal" and request.method == 'POST' and request.user.is_authenticated:
+        input_form = CreateJournal(request.POST, request.FILES)
+        if input_form.is_valid():
+            journal = Journal(journal_name=input_form.cleaned_data['journal_name'],
+                              author=UserProfile.objects.get(user__username=request.user.username),
+                              short_disc=input_form.cleaned_data['short_disc'],
+                              avatar=input_form.cleaned_data['avatar'])
+            journal.save()
+            return HttpResponseRedirect('/authors/' + request.user.username)
+    elif action == "create-article" and journal_name != '' and request.user.is_authenticated:
+        form = CreateArticle(initial={'journal': journal_name})
+        return render(request, 'create-article.html', {'form': form})
+    elif action == "save-article" and request.method == 'POST' and request.user.is_authenticated:
+        input_form = CreateArticle(request.POST, request.FILES)
+        if input_form.is_valid():
+            article_instance = Article(journal=Journal.objects.get(
+                journal_name=input_form.cleaned_data['journal'].replace("_", " ")),
+                author=UserProfile.objects.get(user=request.user),
+                title=input_form.cleaned_data['article_name'],
+                short_desc=input_form.cleaned_data['article_short_desk'],
+                body=input_form.cleaned_data['article_body'])
+            article_instance.save()
+            return HttpResponseRedirect('/authors/' + request.user.username)
+    return Http404
 
 
 # Shows articles in journal
@@ -172,19 +198,22 @@ def settings(request):
 def save_changes(request):
     if request.user.is_authenticated:
         user = UserProfile.objects.get(user__username=request.user)
-        form = SettingsForm(request.POST)
+        form = SettingsForm(request.POST, request.FILES)
         if form.is_valid():
             user.user.username = form.cleaned_data['username']
-            if make_password(form.cleaned_data['old_password']) == user.user.password and form.cleaned_data[
-                'new_password'] != '':
+            if make_password(form.cleaned_data['old_password']) == user.user.password and \
+                            form.cleaned_data['new_password'] != '':
+
                 user.user.password = make_password(form.cleaned_data['new_password'])
             user.user.email = form.cleaned_data['email']
             user.save()
             user.short_describe = form.cleaned_data['describe_yourself']
             user.birth_year = form.cleaned_data['birth_year']
             user.gender = form.cleaned_data['gender']
+            if form.cleaned_data['avatar'] is not None:
+                user.avatar = form.cleaned_data['avatar']
             user.save()
-            return HttpResponseRedirect('/authors/' + user.user.username + '/settings/')
+            return HttpResponseRedirect('/authors/settings/')
 
     else:
         return render(request, 'login.html')
