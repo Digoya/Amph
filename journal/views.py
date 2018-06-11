@@ -138,24 +138,60 @@ def journal(request, author_username, journal_name):
     return render(request, 'journal.html', content)
 
 
-# Shows creation form
+# Manage your Journals and Articles
 def create(request, author_username, action, journal_name='', article_name=''):
     if action == "create-journal" and request.user.is_authenticated:
-        form = CreateJournal
+        form = CreateJournal(initial={'new': "True"})
         return render(request, 'create-journal.html', {'form': form})
+    elif action == "edit-journal" and journal_name != '' and request.user.is_authenticated:
+        edit_journal = Journal.objects.get(journal_name=journal_name.replace("_", " "),
+                                           author=UserProfile.objects.get(user=request.user))
+        form = CreateJournal(initial={'journal_name': edit_journal.journal_name,
+                                      'short_disc': edit_journal.short_disc,
+                                      'new': "False",
+                                      'old_name': edit_journal.journal_name})
+        return render(request, 'create-journal.html', {'form': form, 'is_new': False})
     elif action == "save-journal" and request.method == 'POST' and request.user.is_authenticated:
         input_form = CreateJournal(request.POST, request.FILES)
         if input_form.is_valid():
-            journal = Journal(journal_name=input_form.cleaned_data['journal_name'],
-                              author=UserProfile.objects.get(user__username=request.user.username),
-                              short_disc=input_form.cleaned_data['short_disc'],
-                              avatar=input_form.cleaned_data['avatar'])
-            journal.save()
+            if input_form.cleaned_data['new'] == "True":
+                journal = Journal(journal_name=input_form.cleaned_data['journal_name'],
+                                  author=UserProfile.objects.get(user__username=request.user.username),
+                                  short_disc=input_form.cleaned_data['short_disc'],
+                                  avatar=input_form.cleaned_data['avatar'])
+                journal.save()
+            else:
+                journal_instance = Journal.objects.get(
+                    journal_name=input_form.cleaned_data['old_name'],
+                    author=UserProfile.objects.get(user__username=request.user.username), )
+                journal_instance.journal_name = input_form.cleaned_data['journal_name']
+                journal_instance.short_disc = input_form.cleaned_data['short_disc']
+                if input_form.cleaned_data['avatar'] is not None:
+                    journal_instance.avatar = input_form.cleaned_data['avatar']
+                journal_instance.save()
             return HttpResponseRedirect('/authors/' + request.user.username)
+    elif action == "delete-journal" and request.user.is_authenticated and journal_name != '':
+        try:
+            Journal.objects.get(author=UserProfile.objects.get(user=request.user),
+                                journal_name=journal_name.replace("_", " ")).delete()
+        except exceptions.ObjectDoesNotExist:
+            return HttpResponseBadRequest
+        return HttpResponseRedirect('/authors/' + request.user.username)
     elif action == "create-article" and journal_name != '' and request.user.is_authenticated:
         form = CreateArticle(initial={'journal': journal_name,
                                       'new': "True"})
         return render(request, 'create-article.html', {'form': form, 'is_new': True})
+    elif action == "edit-article" and journal_name != '' and request.user.is_authenticated:
+        edit_article = Article.objects.get(journal__journal_name=journal_name.replace("_", " "),
+                                           title=article_name.replace("_", " "),
+                                           author=UserProfile.objects.get(user=request.user))
+        form = CreateArticle(initial={'journal': journal_name,
+                                      'article_name': edit_article.title,
+                                      'article_short_desk': edit_article.short_desc,
+                                      'article_body': edit_article.body,
+                                      'new': "False",
+                                      'old_name': edit_article.title})
+        return render(request, 'create-article.html', {'form': form, 'is_new': False})
     elif action == "save-article" and request.method == 'POST' and request.user.is_authenticated:
         input_form = CreateArticle(request.POST, request.FILES)
         if input_form.is_valid():
@@ -182,16 +218,7 @@ def create(request, author_username, action, journal_name='', article_name=''):
             return HttpResponseRedirect('/authors/' +
                                         request.user.username + '/journal/' +
                                         input_form.cleaned_data['journal'])
-    elif action == "delete-journal" \
-            and request.user.is_authenticated and journal_name != '':
-        try:
-            Journal.objects.get(author=UserProfile.objects.get(user=request.user),
-                                journal_name=journal_name.replace("_", " ")).delete()
-        except exceptions.ObjectDoesNotExist:
-            return HttpResponseBadRequest
-        return HttpResponseRedirect('/authors/' + request.user.username)
-    elif action == "delete-article" \
-            and request.user.is_authenticated and journal_name != '':
+    elif action == "delete-article" and request.user.is_authenticated and journal_name != '':
         try:
             Article.objects.get(author=UserProfile.objects.get(user=request.user),
                                 journal__journal_name=journal_name.replace("_", " "),
@@ -199,17 +226,6 @@ def create(request, author_username, action, journal_name='', article_name=''):
         except exceptions.ObjectDoesNotExist:
             return HttpResponseBadRequest
         return HttpResponseRedirect('/authors/' + request.user.username + '/journal/' + journal_name)
-    elif action == "edit-article" and journal_name != '' and request.user.is_authenticated:
-        edit_article = Article.objects.get(journal__journal_name=journal_name.replace("_", " "),
-                                           title=article_name.replace("_", " "),
-                                           author=UserProfile.objects.get(user=request.user))
-        form = CreateArticle(initial={'journal': journal_name,
-                                      'article_name': edit_article.title,
-                                      'article_short_desk': edit_article.short_desc,
-                                      'article_body': edit_article.body,
-                                      'new': "False",
-                                      'old_name': edit_article.title})
-        return render(request, 'create-article.html', {'form': form, 'is_new': False})
     return HttpResponseBadRequest
 
 

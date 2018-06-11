@@ -55,6 +55,8 @@ class CreateJournal(forms.Form):
     short_disc = forms.CharField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}),
                                  required=False)
     avatar = forms.ImageField(required=False)
+    new = forms.CharField(widget=forms.HiddenInput)
+    old_name = forms.CharField(widget=forms.HiddenInput, required=False)
 
 
 class CreateArticle(forms.Form):
