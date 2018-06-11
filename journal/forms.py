@@ -62,4 +62,6 @@ class CreateArticle(forms.Form):
     article_short_desk = forms.CharField(widget=forms.TextInput(attrs=({'class': 'uk-input uk-margin-small-bottom'})))
     article_body = forms.CharField(widget=forms.TextInput(attrs={'class': 'uk-input uk-margin-small-bottom'}))
     journal = forms.CharField(widget=forms.HiddenInput)
+    new = forms.CharField(widget=forms.HiddenInput)
+    old_name = forms.CharField(widget=forms.HiddenInput, required=False)
     # tags =
