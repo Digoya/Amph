@@ -15,12 +15,13 @@
     <div class=" uk-column-1-2 uk-box-shadow-medium uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle"
          style="background-color: #f8f8f8;">
         <div class="uk-align-left">
-            <img class="uk-border-circle" width="150" height="150" src="
-                    {% if author.avatar.url != '' %}
-                        {{ author.avatar.url }}
-                    {% else %}
-                        {% static 'journal/images/default.png' %}
-                    {% endif %}">
+            <div class="uk-border-circle" style="background: url(
+                    {% if author.avatar.url != '' %}{{ author.avatar.url }}{% else %}{% static 'journal/images/default.png' %}{% endif %});
+                    width: 150px;
+                    height: 150px;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    "></div>
         </div>
         <div>
             <h1 class="uk-margin-remove">
@@ -52,17 +53,48 @@
          uk-grid>
         {% if journals %}
             {% for journal in journals %}
+                <!-- Modal to delete -->
+                <div id="delete-journal-{{ journal.journal_name|string_trans }}" uk-modal>
+                    <div class="uk-modal-dialog uk-modal-body">
+                        <h2 class="uk-modal-title">Delete</h2>
+                        <p>Are you sure you want to delete {{ journal.journal_name }}?</p>
+                        <p class="uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <a href="
+                                    {% url 'authors' %}{{ user.user.username }}/journal/create/delete-journal/{{ journal.journal_name|string_trans }}"
+                               class="uk-button uk-button-primary" type="button">Delete</a>
+                        </p>
+                    </div>
+                </div>
                 <div>
+                    {% if user_auth and user.user.username == author.user.username %}
+                        <nav class="uk-navbar-container" uk-navbar>
+                            <div class="uk-navbar-left">
+                                <ul class="uk-navbar-nav nav-news-font .uk-text-large .uk-text-bold">
+                                    <li><a href="#delete-journal-{{ journal.journal_name|string_trans }}" uk-toggle>Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="uk-navbar-right">
+                                <ul class="uk-navbar-nav nav-news-font .uk-text-large .uk-text-bold">
+                                    <li><a href="
+                                            {% url 'authors' %}{{ user.user.username }}/journal/create/edit-journal/{{ journal.journal_name|string_trans }}">Edit</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    {% endif %}
                     <a style="text-decoration: none;"
                        href="{% url 'authors' %}{{ author.user }}/journal/{{ journal.journal_name|string_trans }}">
                         <div class=" uk-text-large uk-card uk-card-default uk-card-body uk-height-large uk-card-large uk-card-hover uk-background-center-center "
                              style="background-image: url(
-                                     {% if  journal.avatar.url != "" %}{{ journal.avatar.url }}{% endif %});
-                                     color: #f8f8f8; ">{{ journal.journal_name }}</div>
+                                     {% if  journal.avatar.url != "" %}{{ journal.avatar.url }}{% endif %});color: #f8f8f8; ">
+                            <div>{{ journal.journal_name }}</div>
+                        </div>
                     </a>
                 </div>
             {% endfor %}
-            {% if user_auth and user.user.username is author.user %}
+            {% if user_auth and user.user.username == author.user.username %}
                 <a href="{% url 'authors' %}{{ user.user.username }}/journal/create/create-journal/"
                    style="text-decoration: none;">
                     <div class="uk-card uk-card-default uk-card-body uk-card-hover">

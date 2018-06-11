@@ -139,7 +139,7 @@ def journal(request, author_username, journal_name):
 
 
 # Shows creation form
-def create(request, author_username, action, journal_name=''):
+def create(request, author_username, action, journal_name='', article_name=''):
     if action == "create-journal" and request.user.is_authenticated:
         form = CreateJournal
         return render(request, 'create-journal.html', {'form': form})
@@ -165,13 +165,34 @@ def create(request, author_username, action, journal_name=''):
                 short_desc=input_form.cleaned_data['article_short_desk'],
                 body=input_form.cleaned_data['article_body'])
             article_instance.save()
-            return HttpResponseRedirect('/authors/' + request.user.username)
-    return Http404
+            return HttpResponseRedirect('/authors/' +
+                                        request.user.username + '/journal/' +
+                                        input_form.cleaned_data['journal'])
+    elif action == "delete-journal" \
+            and request.user.is_authenticated and journal_name != '':
+        try:
+            Journal.objects.get(author=UserProfile.objects.get(user=request.user),
+                                journal_name=journal_name.replace("_", " ")).delete()
+        except exceptions.ObjectDoesNotExist:
+            return HttpResponseBadRequest
+        return HttpResponseRedirect('/authors/' + request.user.username)
+    elif action == "delete-article" \
+            and request.user.is_authenticated and journal_name != '':
+        try:
+            Article.objects.get(author=UserProfile.objects.get(user=request.user),
+                                journal__journal_name=journal_name.replace("_", " "),
+                                title=article_name.replace("_", " ")).delete()
+        except exceptions.ObjectDoesNotExist:
+            return HttpResponseBadRequest
+        return HttpResponseRedirect('/authors/' + request.user.username + '/journal/' + journal_name)
+    return HttpResponseBadRequest
 
 
 # Shows articles in journal
 def article(request, author_username, journal_name, article_name):
-    article_instance = Article.objects.get(title=article_name.replace("_", " "))
+    article_instance = Article.objects.filter(journal=Journal.objects.
+                                              get(journal_name=journal_name.replace("_", " "))). \
+        get(title=article_name.replace("_", " "))
     content = {'article': article_instance,
                'author': author_username,
                'journal_name': journal_name,

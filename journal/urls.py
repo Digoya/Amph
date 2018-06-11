@@ -20,6 +20,10 @@ urlpatterns = [
     re_path(r'authors/(?P<author_username>\w+?)/journal/create/(?P<action>[\w-]+?)/(?P<journal_name>[\w-]+?)/$',
             views.create,
             name='create'),
+    re_path(r'authors/(?P<author_username>\w+?)/journal/create/(?P<action>[\w-]+?)/(?P<journal_name>[\w-]+?)/'
+            r'(?P<article_name>[\w-]+?)/$',
+            views.create,
+            name='create'),
     re_path(r'authors/(?P<author_username>\w+?)/journal/(?P<journal_name>\w+)/$', views.journal, name='journal'),
     re_path(r'authors/(?P<author_username>\w+?)/journal/(?P<journal_name>\w+?)/article/(?P<article_name>\w+)/$',
             views.article,

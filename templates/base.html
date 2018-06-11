@@ -32,12 +32,16 @@
                             <a href="" uk-icon="icon: bell"></a>
                         </div>
                         <li>
-                            <a href="#"><img class="uk-border-circle" width="50" height="50"
-                                             src="{% if user.avatar.url != '' %}
-                                                        {{ user.avatar.url }}
-                                                    {% else %}
-                                                        {% static 'journal/images/default.png' %}
-                                                    {% endif %}"></a>
+                            <a href="#">
+                                <div class="uk-border-circle"
+                                     style="background: url(
+                                             {% if user.avatar.url != '' %}{{ user.avatar.url }}{% else %}{% static 'journal/images/default.png' %}{% endif %});
+                                             width: 50px;
+                                             height: 50px;
+                                             background-size: cover;
+                                             background-repeat: no-repeat;
+                                             "></div>
+                            </a>
                             <div class="uk-navbar-dropdown uk-margin-remove">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
                                     <li><a href="{% url 'authors' %}{{ user.user.username }}">Profile</a></li>

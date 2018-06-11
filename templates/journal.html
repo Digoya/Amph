@@ -33,7 +33,36 @@
          uk-grid>
         {% if articles %}
             {% for article in articles %}
+                <!-- Modal to delete -->
+                <div id="delete-article-{{ article.title|string_trans }}" uk-modal>
+                    <div class="uk-modal-dialog uk-modal-body">
+                        <h2 class="uk-modal-title">Delete</h2>
+                        <p>Are you sure you want to delete {{ article.title }}?</p>
+                        <p class="uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <a href="
+                                    {% url 'authors' %}{{ user.user.username }}/journal/create/delete-article/{{ journal.journal_name|string_trans }}/{{ article.title|string_trans }}/"
+                               class="uk-button uk-button-primary" type="button">Delete</a>
+                        </p>
+                    </div>
+                </div>
             <div>
+                {% if user_auth and user.user.username == author %}
+                    <nav class="uk-navbar-container" uk-navbar>
+                        <div class="uk-navbar-left">
+                            <ul class="uk-navbar-nav nav-news-font .uk-text-large .uk-text-bold">
+                                <li><a href="#delete-article-{{ article.title|string_trans }}" uk-toggle>Delete</a></li>
+                            </ul>
+                        </div>
+                        <div class="uk-navbar-right">
+                            <ul class="uk-navbar-nav nav-news-font .uk-text-large .uk-text-bold">
+                                <li><a href="
+                                        {% url 'authors' %}{{ user.user.username }}/journal/create/edit-article/{{ journal.journal_name|string_trans }}/{{ article.title|string_trans }}/">Edit</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                {% endif %}
                 <div class="uk-card uk-card-default uk-card-body uk-card-hover uk-card-large">
                     <h2>{{ article.title }}</h2>
                     <h4>{{ article.short_desc }}</h4>
@@ -44,7 +73,7 @@
                     </a></div>
             </div>
         {% endfor %}
-            {% if user_auth and user.user.username is author.user %}
+            {% if user_auth and user.user.username == author %}
                 <a href="
                         {% url 'authors' %}{{ user.user.username }}/journal/create/create-article/{{ journal.journal_name|string_trans }}"
                    style="text-decoration: none;">
@@ -53,7 +82,7 @@
                     </div>
                 </a>
             {% endif %}
-        {% elif user_auth and user.user.username is author.user %}
+        {% elif user_auth and user.user.username == author %}
             <a href="
                     {% url 'authors' %}{{ user.user.username }}/journal/create/create-article/{{ journal.journal_name|string_trans }}"
                style="text-decoration: none;">
